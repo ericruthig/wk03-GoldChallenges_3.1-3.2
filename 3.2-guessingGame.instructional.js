@@ -20,23 +20,48 @@
 //? not required:  If you liked to style it, feel free to add a stylesheet to your HTML.
 
 //NOTE: Write your code below and push back to your github branch.  SUBMIT YOUR GITHUB URL IN CANVAS
-const randNum = Math.floor(Math.random() * 10) + 1;
+const randNum = Math.floor(Math.random() * 10 + 1); {
 console.log('random', randNum);
-
-function guess(){
-    var guessNumber = guessNum.value;
-    if(guessNumber === randNum) {
-        alert("BOOM! That is correct");
-    } else if(guessNumber > randNum) { 
-        alert("Whoops! Guess again!");
-    } else if(guessNumber < randNum) {
-        alert('Whoops! Try again!');
-    };
 };
 
+var allowedGuess = 3;
+var guessCount = 0;
+let guessNum = document.getElementById('guessNum').value;
+
+function guess(){
+    
+    if (guessCount <= allowedGuess) {
+        // var guessNumber = guessNum.value;
+        if (guessCount < 0 ){guessNum=0;}
+        if((guessCount < allowedGuess) && (guessNum != randNum)) {
+            // guessNum = document.getElementByType('number').value;
+            guessNum = parseInt(guessNum);
+        };
+        if(guessCount > allowedGuess) {
+            alert('Game over, bro!! GAME OVER!!!');
+        };
+        
+        } if(guessNum > randNum) { 
+            alert("Whoops! Guess again (lower)!");
+            guessCount++;
+        } else if(guessNum < randNum) {
+            alert('Whoops! Try again (higher)!');
+            guessCount++;
+        } else if(guessNum.value === randNum.value) {
+            alert("BOOM! That is correct");
+            guessCount++;
+    } else { 
+        guessCount--;
+    }
+};
+
+document.getElementById('submitGuess').addEventListener('click', e => {
+    e.preventDefault();
+})
+
 const btn = document.querySelector('button');
-btn.addEventListener('click', check) {
-    console.log('guessed', check)
+btn.addEventListener('click', guess); {
+    console.log('guessed', guess)
 };
 
 // document.getElementById('submitGuess').onclick = guess();
